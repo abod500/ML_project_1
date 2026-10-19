@@ -1,0 +1,20 @@
+[project]
+name = "ml-project-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Abod500", email = "abdallafarouk1@aucegypt.edu" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.4.6",
+]
+
+[project.scripts]
+ml-project-1 = "ml_project_1:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
