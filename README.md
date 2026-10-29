@@ -5,14 +5,38 @@ Factor Surveillance System (BRFSS) telephone survey has coronary heart disease
 or has had a heart attack (MICHD). Only Python's standard library, NumPy
 and matplotlib (plots only) are used.
 
+## Setup and data
+
+The dataset is not included in this repository. Obtain the course data
+separately and place the following files in the same local folder:
+
+```text
+data/
+├── x_train.csv
+├── y_train.csv
+└── x_test.csv
+```
+
+The folder can be located anywhere; it does not need to be committed to
+GitHub. The commands below assume that it is located at `project1/data/`
+relative to the repository root.
+
+Install the project dependencies with `uv sync`, or install the runtime
+dependencies with `pip install numpy matplotlib`.
+
 ## Reproducing the submission
 
-Put `x_train.csv`, `y_train.csv` and `x_test.csv` in one folder, then:
+From the repository root, run:
 
-```bash
-python run.py --data-dir path/to/data          # writes submission.csv
-python experiments.py --data-dir path/to/data  # 5-fold CV, writes results/
+```powershell
+python run.py --data-dir project1\data
+python experiments.py --data-dir project1\data
 ```
+
+The first command writes `submission.csv` in the repository root. The second
+command runs the 5-fold cross-validation experiments and writes the generated
+results to `results/`. If the data is stored elsewhere, replace
+`project1\data` with its path.
 
 Each run first parses the CSVs with `helpers.load_csv_data` (about 2 min).
 After that, `run.py` takes about 1 minute and `experiments.py` about 25.
@@ -29,7 +53,6 @@ Both are deterministic.
 | `modeling.py` | Class-weighted logistic regression (our modification), predictions, metrics (F1, ROC-AUC, …), stratified splits and k-fold, threshold search. |
 | `experiments.py` | 5-fold cross-validation of baselines, our model, and the cleaning ablations. |
 | `run.py` | Trains the final model on all training data and writes `submission.csv`. |
-| `test.ipynb` | Exploratory analysis and a first single-split experiment. |
 | `results/` | Output of `experiments.py` (`cv_results.md`, `cv_results.json`). |
 
 ## Pipeline
